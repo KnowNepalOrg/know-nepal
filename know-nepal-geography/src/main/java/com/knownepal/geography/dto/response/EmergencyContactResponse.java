@@ -1,7 +1,7 @@
 package com.knownepal.geography.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.knownepal.geography.model.MunicipalityType;
+import com.knownepal.geography.model.EmergencyContactType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,24 +12,24 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MunicipalityResponse {
+public class EmergencyContactResponse {
 
     private Long id;
     private String name;
     private String nameNepali;
-    private String code;
-    private String slug;
-    private MunicipalityType type;
-    private Double area;
-    private Long population;
-    private Integer wardCount;
+    private EmergencyContactType type;
+    private String phone;
+    private String alternatePhone;
+    private String email;
+    private String website;
+    private String address;
+    private String description;
+    private Boolean isNational;
     private Double latitude;
     private Double longitude;
-    private Double elevation;
-    private String description;
-    private String websiteUrl;
-    private String contactPhone;
-    private String contactEmail;
+    private String slug;
+    private String contactPerson;
+    private String availableHours;
     private String imageUrl;
     private Long districtId;
     private String districtName;
