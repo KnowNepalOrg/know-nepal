@@ -10,7 +10,11 @@ jobs:
   backend:
     runs-on: ubuntu-latest
 
-    # Spins up a real PostgreSQL container for Flyway migrations and tests
+    # Tells GitHub Actions to run all Maven commands inside the correct subfolder
+    defaults:
+      run:
+        working-directory: know-nepal-geography
+
     services:
       postgres:
         image: postgres:15
@@ -36,6 +40,7 @@ jobs:
           java-version: "21"
           distribution: "temurin"
           cache: maven
+          cache-dependency-path: know-nepal-geography/pom.xml
 
       # Runs your Flyway migrations and JUnit tests against the live Postgres service
       - name: Run tests
@@ -43,8 +48,8 @@ jobs:
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/know_nepal_test
           SPRING_DATASOURCE_USERNAME: postgres
           SPRING_DATASOURCE_PASSWORD: password
-        run: mvn test
+        run: ./mvnw test
 
       # Packages the application into a JAR file, skipping tests since they ran above
       - name: Package
-        run: mvn package -DskipTests
+        run: ./mvnw package -DskipTests
