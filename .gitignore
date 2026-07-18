@@ -20,3 +20,5 @@ know-nepal-geography/.mvn/wrapper/maven-wrapper.properties
 know-nepal-geography/.mvn/wrapper/maven-wrapper.properties
 know-nepal-geography/mvnw
 know-nepal-geography/mvnw.cmd
+know-nepal-geography/src/main/resources/application.yml
+know-nepal-geography/src/main/resources/application.yml
