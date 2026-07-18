@@ -1,0 +1,50 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+
+    # Spins up a real PostgreSQL container for Flyway migrations and tests
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: know_nepal_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Sets up JDK 21 to match your pom.xml property
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: "temurin"
+          cache: maven
+
+      # Runs your Flyway migrations and JUnit tests against the live Postgres service
+      - name: Run tests
+        env:
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/know_nepal_test
+          SPRING_DATASOURCE_USERNAME: postgres
+          SPRING_DATASOURCE_PASSWORD: password
+        run: mvn test
+
+      # Packages the application into a JAR file, skipping tests since they ran above
+      - name: Package
+        run: mvn package -DskipTests
