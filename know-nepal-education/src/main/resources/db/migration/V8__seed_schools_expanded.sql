@@ -1,0 +1,4 @@
+-- V8__seed_schools_expanded.sql
+-- SKIPPED: Original generated school data had SQL syntax errors.
+-- Real school data is now provided by V13__enrich_schools_real_names.sql
+-- which DELETEs generated schools and INSERTs 151 real notable schools.
