@@ -24,3 +24,6 @@ know-nepal-geography/src/main/resources/application.yml
 know-nepal-geography/src/main/resources/application.yml
 /know-nepal-education/target
 /know-nepal-education/target
+know-nepal-education/target/know-nepal-education-0.0.1-SNAPSHOT.jar
+*.original
+/know-nepal-destinations/target
