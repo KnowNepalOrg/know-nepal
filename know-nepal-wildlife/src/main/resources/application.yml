@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: know-nepal-wildlife
+  datasource:
+    url: jdbc:postgresql://localhost:5432/know_nepal_wildlife
+    username: postgres
+    password: nabin99
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: false
+  cache:
+    type: caffeine
+
+server:
+  port: 8083
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
